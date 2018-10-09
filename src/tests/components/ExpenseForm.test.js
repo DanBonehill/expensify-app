@@ -1,5 +1,5 @@
 import React from 'react';
-import {shallow} from 'enzyme'
+import {shallow} from 'enzyme';
 import moment from 'moment';
 import ExpenseForm from '../../components/ExpenseForm';
 import expenses from '../fixtures/expenses';
