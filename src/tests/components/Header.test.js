@@ -1,9 +1,9 @@
 import React from 'react';
-import ReachShallowRenderer from 'react-test-renderer/shallow';
+import {shallow} from 'enzyme';
+import toJSON from 'enzyme-to-json';
 import Header from '../../components/Header';
 
 test('should render Header correctly', () => {
-    const renderer = new ReachShallowRenderer();
-    renderer.render(<Header/>);
-    expect(renderer.getRenderOutput()).toMatchSnapshot();
+    const wrapper = shallow(<Header/>);
+    expect(toJSON(wrapper)).toMatchSnapshot();
 });
