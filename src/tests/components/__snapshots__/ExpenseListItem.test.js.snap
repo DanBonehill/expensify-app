@@ -11,9 +11,9 @@ exports[`ExpenseListItem snapshot should render ExpenseListItem with expenses 1`
     </Link>
   </h4>
   <p>
-    10500
-     - 
-    0
+    £105.00
+    -
+    1st January 1970
   </p>
 </div>
 `;
