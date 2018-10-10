@@ -36,32 +36,3 @@ exports[`ExpenseList snapshot should render ExpenseList with expenses 1`] = `
   />
 </div>
 `;
-
-exports[`should render ExpenseList with expenses 1`] = `
-<div>
-  <ExpenseListItem
-    amount={10500}
-    createdAt={0}
-    description="Rent"
-    id="1"
-    key="1"
-    note=""
-  />
-  <ExpenseListItem
-    amount={205}
-    createdAt={-345600000}
-    description="Coffee"
-    id="2"
-    key="2"
-    note=""
-  />
-  <ExpenseListItem
-    amount={45000}
-    createdAt={345600000}
-    description="Credit Card"
-    id="3"
-    key="3"
-    note=""
-  />
-</div>
-`;
