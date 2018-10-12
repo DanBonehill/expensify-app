@@ -68,3 +68,14 @@ describe('EDIT_EXPENSE action', () => {
         expect(state).toEqual(expenses)
     })
 });
+
+describe('SET_EXPENSES action', () => {
+    test('should set expenses', () => {
+         const action = {
+             type: "SET_EXPENSES",
+             expenses: [expenses[0]]
+         };
+         const state = expensesReducer(expenses, action);
+        expect(state).toEqual([expenses[0]])
+    })
+});

@@ -4,7 +4,9 @@ import {
     addExpense,
     startAddExpense,
     editExpense,
-    removeExpense
+    removeExpense,
+    setExpenses,
+    startSetExpenses
 } from '../../actions/expenses';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
@@ -94,4 +96,37 @@ describe("Edit action", () => {
             }
         })
     });
+});
+
+describe("Set action", () => {
+    test('should setup set expense action object with data', () => {
+        const action = setExpenses(expenses);
+        expect(action).toEqual({
+            type: "SET_EXPENSES",
+            expenses
+        })
+    });
+});
+
+describe('Start Set action', () => {
+    beforeEach((done) => {
+        const expensesData = {};
+        expenses.forEach(({id, description, note, amount, createdAt}) => {
+            expensesData[id] = {description, note, amount, createdAt}
+        });
+        database.ref('expenses').set(expensesData).then(() => done());
+    });
+
+    test('should fetch expenses from db', (done) => {
+        const store = createMockStore({});
+
+        store.dispatch(startSetExpenses()).then(() => {
+            const actions = store.getActions();
+            expect(actions).toEqual([{
+                type: 'SET_EXPENSES',
+                expenses
+            }]);
+            done()
+        })
+    })
 });
