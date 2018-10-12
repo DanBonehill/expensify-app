@@ -4,6 +4,7 @@ import {
     addExpense,
     startAddExpense,
     editExpense,
+    startEditExpense,
     removeExpense,
     startRemoveExpense,
     setExpenses,
@@ -124,6 +125,30 @@ describe("Edit action", () => {
             }
         })
     });
+});
+
+describe('Start Edit action', () => {
+    test('should edit expenses from db', (done) => {
+        const store = createMockStore({});
+        const id = expenses[0].id;
+        const updates = {
+            description: "Broadband"
+        };
+
+        store.dispatch(startEditExpense(id, updates)).then(() => {
+            const actions = store.getActions();
+            expect(actions).toEqual([{
+                type: "EDIT_EXPENSE",
+                id,
+                updates
+            }]);
+
+            return database.ref(`expenses/${id}`).once('value');
+        }).then((snapshot) => {
+            expect(snapshot.val().description).toEqual(updates.description);
+            done()
+        })
+    })
 });
 
 describe("Set action", () => {
