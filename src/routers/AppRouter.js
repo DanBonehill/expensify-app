@@ -1,12 +1,11 @@
 import React from "react";
 import {
     BrowserRouter as Router,
-    Link,
-    NavLink,
     Route,
     Switch
 } from "react-router-dom";
 
+import LoginPage from '../components/LoginPage';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
@@ -19,7 +18,8 @@ const AppRouter = () => (
         <div>
             <Header/>
             <Switch>
-                <Route path="/" component={ExpenseDashboardPage} exact/>
+                <Route path="/" component={LoginPage} exact/>
+                <Route path="/dashboard" component={ExpenseDashboardPage} exact/>
                 <Route path="/create" component={AddExpensePage} exact/>
                 <Route path="/edit/:id" component={EditExpensePage} exact/>
                 <Route path="/help" component={HelpPage} exact/>

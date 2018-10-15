@@ -4,14 +4,13 @@ import {Provider} from 'react-redux';
 
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
-import './firebase/firebase';
-
 import {startSetExpenses} from "./actions/expenses";
 
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import 'react-dates/initialize';
+import {firebase} from './firebase/firebase';
 
 const store = configureStore();
 
@@ -20,6 +19,15 @@ const jsx = (
         <AppRouter />
     </Provider>
 );
+
+firebase.auth().onAuthStateChanged((user) => {
+    console.log("Auth Changed");
+    if (user) {
+        console.log(user)
+    } else {
+        console.log("Log out");
+    }
+});
 
 ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
